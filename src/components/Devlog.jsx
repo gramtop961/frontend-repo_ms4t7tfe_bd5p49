@@ -23,22 +23,24 @@ export default function Devlog() {
   }, [])
 
   return (
-    <section id="devlog" className="max-w-6xl mx-auto px-6 py-12">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Devlog</h2>
+    <section id="devlog" className="max-w-6xl mx-auto px-6 py-16">
+      <div className="flex items-end justify-between mb-8">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-950">Devlog</h2>
+      </div>
       {loading ? (
-        <p className="text-blue-100/80">Loading posts...</p>
+        <p className="text-zinc-500">Loading posts...</p>
       ) : posts.length === 0 ? (
-        <p className="text-blue-100/80">No posts yet. First entry coming soon!</p>
+        <p className="text-zinc-500">No posts yet. First entry coming soon.</p>
       ) : (
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {posts.map((p) => (
-            <article key={p.id} className="bg-slate-800/60 border border-white/10 rounded-xl p-5">
+            <article key={p.id} className="group bg-white ring-1 ring-zinc-200 rounded-2xl p-5 hover:shadow-sm transition-shadow">
               {p.cover_image && (
-                <img src={p.cover_image} alt="cover" className="w-full h-40 object-cover rounded-lg mb-4" />
+                <img src={p.cover_image} alt="cover" className="w-full h-40 object-cover rounded-xl mb-4" />
               )}
-              <h3 className="text-xl font-semibold text-white">{p.title}</h3>
-              {p.summary && <p className="text-blue-100/80 mt-1">{p.summary}</p>}
-              <div className="mt-3 text-sm text-blue-200/80 whitespace-pre-wrap line-clamp-4">{p.content}</div>
+              <h3 className="text-lg font-medium text-zinc-900 group-hover:opacity-90">{p.title}</h3>
+              {p.summary && <p className="text-zinc-600 mt-1 text-sm leading-relaxed">{p.summary}</p>}
+              <div className="mt-3 text-sm text-zinc-500 whitespace-pre-wrap line-clamp-4">{p.content}</div>
             </article>
           ))}
         </div>
